@@ -146,7 +146,7 @@ def renderScene():
 	camera.rotate(0, yrot*0.001, 0.0)
 	# Draw Sphere
 	glPushMatrix()
-	glutSolidCube(1.5);
+	glutSolidCube(1.5)
 	glPopMatrix()
 
 	idle()
@@ -174,6 +174,27 @@ def changeSize(w, h):
 	#Get Back to the Modelview
 	glMatrixMode(GL_MODELVIEW)
 	
+def loadTexture(filename):
+	#texture
+	texture = glGenTextures(1)
+	glBindTexture(GL_TEXTURE_2D, texture)
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+
+	img = Image.open(filename)
+	data = numpy.array(list(img.getdata()), dtype=numpy.int64)
+	print(len(data))
+	width = 1000
+	height = 1000
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data)
+	glGenerateMipmap(GL_TEXTURE_2D)
+
+	return texture
+
 def main():
 
 	#init GLUT and create window
