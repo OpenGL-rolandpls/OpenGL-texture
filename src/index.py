@@ -434,6 +434,51 @@ def drawCar():
 	glEnd()
 	glDisable(GL_BLEND)
 
+	loadTexture(data[1],dim1[2],dim1[3])
+	glEnable(GL_TEXTURE_2D)
+	# Car's Wheel
+	glColor3f(0.0, 0.0, 0.0)
+	quadric = gluNewQuadric()
+	gluQuadricNormals(quadric, GLU_SMOOTH)
+	gluQuadricTexture(quadric, GL_TRUE)
+	glTranslatef(1.7,-1.0,-1.7)
+	gluCylinder(quadric,0.6,0.6,0.2,15,15)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	glTranslatef(0.0,0.0,0.2)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	
+	glTranslatef(0.0, 0.0, -0.2)
+	glTranslatef(-3.3, 0.0, 0.0)
+	gluCylinder(quadric,0.6,0.6,0.2,15,15)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	glTranslatef(0.0,0.0,0.2)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	
+	glTranslatef(0.0, 0.0, -0.2)
+	glTranslatef(0.0, 0.0, 3.2)
+	gluCylinder(quadric,0.6,0.6,0.2,15,15)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	glTranslatef(0.0,0.0,0.2)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	
+	glTranslatef(0.0, 0.0, -0.2)
+	glTranslatef(3.3, 0.0, 0.0)
+	gluCylinder(quadric,0.6,0.6,0.2,15,15)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	glTranslatef(0.0,0.0,0.2)
+	gluDisk(quadric, 0, 0.6, 15, 15)
+	
+	glColor3f(1.0, 1.0, 1.0)
+	gluDisk(quadric, 0.2, 0.4, 15, 15)
+	glTranslatef(-3.3, 0.0, 0.0)
+	gluDisk(quadric, 0.2, 0.4, 15, 15)
+	glTranslatef(0.0, 0.0, -0.2)
+	glTranslatef(0.0, 0.0, -3.2)
+	gluDisk(quadric, 0.2, 0.4, 15, 15)
+	glTranslatef(+3.3, 0.0, 0.0)
+	gluDisk(quadric, 0.2, 0.4, 15, 15)
+	glDisable(GL_TEXTURE_2D)
+
 # Initialization
 def InitGL(Width, Height): 
  
@@ -546,6 +591,11 @@ def main():
 	dim1.append(x)
 	dim1.append(y)
 	data.append(arr)
+
+	arr2, x2, y2 = loadImage("../img/wheel.jpg")
+	dim1.append(x2)
+	dim1.append(y2)
+	data.append(arr2)
 
 	# arr, x, y = loadImage("../img/tes.jpg")
 	# dim2.append(x)
