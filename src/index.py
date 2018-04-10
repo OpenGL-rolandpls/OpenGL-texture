@@ -134,14 +134,44 @@ def renderLight():
 
 def drawCar():
 	z = 1.5 
-	#back
+
+	#back window frame
 	glColor3f(206/255, 20/255, 55/255)
 	glBegin(GL_QUADS)
-	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, -z)
-	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 1.5, z)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 0.25, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 0.25, z)
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
 	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, -1.0, -z)
 	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 1.5, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, 1.0, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.0, -z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 0.25, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 0.25, -z+0.5)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, 1.0, -z+0.5)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.0, -z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 0.25, z-0.5)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 0.25, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, 1.0, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.0, z-0.5)
+	glEnd()
+	# #back
+	# glColor3f(206/255, 20/255, 55/255)
+	# glBegin(GL_QUADS)
+	# glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, -z)
+	# glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 1.5, z)
+	# glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
+	# glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, -1.0, -z)
+	# glEnd()
 
 	#top
 	glColor3f(240/255, 20/255, 55/255)
@@ -203,14 +233,42 @@ def drawCar():
 	glTexCoord2f(0.0, 1.0); glVertex3f(1.2, 0.25, -z)
 	glEnd()
 
-	#left back
+	#left above (window frame part)
 	glColor3f(206/255, 20/255, 55/255)
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(0.6, 1.5, -z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(0.696, 1.3, -z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.3, -z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.3, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 0.25, -z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-2.5, 0.25, -z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-2.5, 1.3, -z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-1.2, 1.3, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-1.2, 0.25, -z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, 0.25, -z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.3, -z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, -z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(0.696, 1.3, -z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(0.496, 1.3, -z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(1.0, 0.25, -z)
+	glEnd()
+
+	#left back
 	glBegin(GL_POLYGON)
-	glTexCoord2f(0.0, 0.0); glVertex3f(0.6, 1.5, -z)
-	glVertex3f(1.2, 0.25, -z)
+	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, -z)
 	glTexCoord2f(1.0, 0.0); glVertex3f(1.2, -1.0, -z)
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, -z)
-	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.5, -z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 0.25, -z)
 	glEnd()
 
 	#left front
@@ -221,13 +279,41 @@ def drawCar():
 	glTexCoord2f(0.0, 1.0); glVertex3f(1.2, -1.0, -z)
 	glEnd()
 
+	#right above (window frame part)
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(0.6, 1.5, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(0.696, 1.3, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.3, z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.3, z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 0.25, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-2.5, 0.25, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-2.5, 1.3, z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(-1.2, 1.3, z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(-1.2, 0.25, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, 0.25, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.3, z)
+	glEnd()
+
+	glBegin(GL_QUADS)
+	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, z)
+	glTexCoord2f(1.0, 0.0); glVertex3f(0.696, 1.3, z)
+	glTexCoord2f(1.0, 1.0); glVertex3f(0.496, 1.3, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(1.0, 0.25, z)
+	glEnd()
+
 	#right back
 	glBegin(GL_POLYGON)
-	glTexCoord2f(0.0, 0.0); glVertex3f(0.6, 1.5, z)
-	glVertex3f(1.2, 0.25, z)
+	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, z)
 	glTexCoord2f(1.0, 0.0); glVertex3f(1.2, -1.0, z)
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
-	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.5, z)
+	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 0.25, z)
 	glEnd()
 
 	#right front
@@ -250,6 +336,42 @@ def drawCar():
 	glEnd()
 	glDisable(GL_BLEND)
 	
+	#right window glass
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+	glEnable(GL_BLEND)
+	glColor4f(90/255, 90/255, 90/255, 0.3)
+	glBegin(GL_QUADS)
+	glVertex3f(-3.0, 1.5, z-0.01)
+	glVertex3f(0.5, 1.5, z-0.01)
+	glVertex3f(1.2, 0.25, z-0.01)
+	glVertex3f(-3.0, 0.25, z-0.01)
+	glEnd()
+	glDisable(GL_BLEND)
+
+	#front window glass
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+	glEnable(GL_BLEND)
+	glColor4f(90/255, 90/255, 90/255, 0.3)
+	glBegin(GL_QUADS)
+	glVertex3f(0.5, 1.5, -z)
+	glVertex3f(0.5, 1.5, z)
+	glVertex3f(1.2, 0.25, z)
+	glVertex3f(1.2, 0.25, -z)
+	glEnd()
+	glDisable(GL_BLEND)
+
+	#back window glass
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+	glEnable(GL_BLEND)
+	glColor4f(90/255, 90/255, 90/255, 0.3)
+	glBegin(GL_QUADS)
+	glVertex3f(-2.99, 0.25, -z+0.5)
+	glVertex3f(-2.99, 0.25, z-0.5)
+	glVertex3f(-2.99, 1.0, z-0.5)
+	glVertex3f(-2.99, 1.0, -z+0.5)
+	glEnd()
+	glDisable(GL_BLEND)
+
 # Initialization
 def InitGL(Width, Height): 
  
