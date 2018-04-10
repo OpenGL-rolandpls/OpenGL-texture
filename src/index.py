@@ -33,6 +33,10 @@ ydiff = 0.0
 
 mouseDown = False
 
+data = []
+dim1 = []
+dim2 = []
+
 # --CLASSES--
 class Camera:
 	def __init__(self):
@@ -133,9 +137,12 @@ def renderLight():
 	glLightfv(GL_LIGHT0, GL_POSITION, [2.0, 2.0, 2.0, 1.0])
 
 def drawCar():
+	global data
 	z = 1.5 
 
+	loadTexture(data[0],dim1[0],dim1[1])
 	#back window frame
+	glEnable(GL_TEXTURE_2D)
 	glColor3f(206/255, 20/255, 55/255)
 	glBegin(GL_QUADS)
 	glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 0.25, -z)
@@ -164,14 +171,6 @@ def drawCar():
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, 1.0, z)
 	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 1.0, z-0.5)
 	glEnd()
-	# #back
-	# glColor3f(206/255, 20/255, 55/255)
-	# glBegin(GL_QUADS)
-	# glTexCoord2f(0.0, 0.0); glVertex3f(-3.0, 1.5, -z)
-	# glTexCoord2f(1.0, 0.0); glVertex3f(-3.0, 1.5, z)
-	# glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
-	# glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, -1.0, -z)
-	# glEnd()
 
 	#top
 	glColor3f(240/255, 20/255, 55/255)
@@ -315,7 +314,10 @@ def drawCar():
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
 	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 0.25, z)
 	glEnd()
+	glDisable(GL_TEXTURE_2D)
 
+	loadTexture(data[1],dim2[0],dim2[1])
+	glEnable(GL_TEXTURE_2D)
 	#right front
 	glBegin(GL_POLYGON)
 	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, z)
@@ -323,19 +325,20 @@ def drawCar():
 	glTexCoord2f(1.0, 1.0); glVertex3f(3.0, -1.0, z)
 	glTexCoord2f(0.0, 1.0); glVertex3f(1.2, -1.0, z)
 	glEnd()
-
+	glDisable(GL_TEXTURE_2D)
+	
 	#front window glass
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 	glEnable(GL_BLEND)
 	glColor4f(90/255, 90/255, 90/255, 0.3)
 	glBegin(GL_QUADS)
-	glTexCoord2f(0.0, 0.0); glVertex3f(0.65, 1.42, -z)
-	glTexCoord2f(1.0, 0.0); glVertex3f(0.65, 1.42, -z)
-	glTexCoord2f(1.0, 1.0); glVertex3f(1.15, 0.34, -z)
-	glTexCoord2f(0.0, 1.0); glVertex3f(1.15, 0.34, -z)
+	glVertex3f(0.65, 1.42, -z)
+	glVertex3f(0.65, 1.42, -z)
+	glVertex3f(1.15, 0.34, -z)
+	glVertex3f(1.15, 0.34, -z)
 	glEnd()
 	glDisable(GL_BLEND)
-	
+		
 	#right window glass
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 	glEnable(GL_BLEND)
@@ -442,12 +445,15 @@ def DrawGLScene():
 	glutSwapBuffers()
  
  
-def loadImage():
-	image = Image.open("../img/blue.jpg")
+def loadImage(filename):
+	image = Image.open(filename)
 	ix = image.size[0]
 	iy = image.size[1]
 	data = numpy.array(list(image.getdata()),  dtype=numpy.int64)
 
+	return data, ix, iy
+
+def loadTexture(data, ix, iy):
 	glPixelStorei(GL_UNPACK_ALIGNMENT,1)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ix, iy, 0, GL_RGB, GL_UNSIGNED_BYTE, data)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
@@ -460,6 +466,7 @@ def loadImage():
 
       
 def main():
+	global data
 	glutInit(sys.argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH)
 	glutInitWindowSize(640,480)
@@ -476,7 +483,16 @@ def main():
 	glutMouseFunc(mouse)
 	glutMotionFunc(mouseMotion)
 	InitGL(640, 480)
-	loadImage()
+	arr, x, y = loadImage("../img/blue.jpg")
+	dim1.append(x)
+	dim1.append(y)
+	data.append(arr)
+
+	arr, x, y = loadImage("../img/tes.jpg")
+	dim2.append(x)
+	dim2.append(y)
+	data.append(arr)
+	
 	glutMainLoop()
  
 if __name__ == "__main__":
