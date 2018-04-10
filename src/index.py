@@ -314,10 +314,7 @@ def drawCar():
 	glTexCoord2f(1.0, 1.0); glVertex3f(-3.0, -1.0, z)
 	glTexCoord2f(0.0, 1.0); glVertex3f(-3.0, 0.25, z)
 	glEnd()
-	glDisable(GL_TEXTURE_2D)
 
-	loadTexture(data[1],dim2[0],dim2[1])
-	glEnable(GL_TEXTURE_2D)
 	#right front
 	glBegin(GL_POLYGON)
 	glTexCoord2f(0.0, 0.0); glVertex3f(1.2, 0.25, z)
@@ -326,7 +323,69 @@ def drawCar():
 	glTexCoord2f(0.0, 1.0); glVertex3f(1.2, -1.0, z)
 	glEnd()
 	glDisable(GL_TEXTURE_2D)
+
+	#lampu
+	glBegin(GL_QUADS)
+	glColor3f(0.9,0.9,0.9)
+	glVertex3f(3.006, -0.65, -z+0.101)
+	glVertex3f(3.006, -0.35, -z+0.101)
+	glVertex3f(3.006, -0.35, -z+0.601)
+	glVertex3f(3.006, -0.65, -z+0.601)
+
+	glVertex3f(3.006, -0.65, z-0.101)
+	glVertex3f(3.006, -0.35, z-0.101)
+	glVertex3f(3.006, -0.35, z-0.601)
+	glVertex3f(3.006, -0.65, z-0.601)
 	
+	glColor3f(0.6,0.2,0.2)
+	glVertex3f(-3.006, -0.65, -z+0.101)
+	glVertex3f(-3.006, -0.35, -z+0.101)
+	glVertex3f(-3.006, -0.35, -z+0.601)
+	glVertex3f(-3.006, -0.65, -z+0.601)
+
+	glVertex3f(-3.006, -0.65, z-0.101)
+	glVertex3f(-3.006, -0.35, z-0.101)
+	glVertex3f(-3.006, -0.35, z-0.601)
+	glVertex3f(-3.006, -0.65, z-0.601)
+
+	glColor3f(0,0,0)
+	glVertex3f(3.006, -0.6, -z+1)
+	glVertex3f(3.006, -0.37, -z+1)
+	glVertex3f(3.006, -0.37, z-1)
+	glVertex3f(3.006, -0.6, z-1)
+	#lampu2
+	glColor3f(0.6,0.6,0.6)
+	glVertex3f(3.005, -0.7, -z)
+	glVertex3f(3.005, -0.3, -z)
+	glVertex3f(3.005, -0.3, z)
+	glVertex3f(3.005, -0.7, z)
+
+	glVertex3f(-3.005, -0.7, -z)
+	glVertex3f(-3.005, -0.3, -z)
+	glVertex3f(-3.005, -0.3, z)
+	glVertex3f(-3.005, -0.7, z)
+
+	glVertex3f(2.9, -0.3, -z-0.0014)
+	glVertex3f(3.0, -0.3, -z-0.0014)
+	glVertex3f(3.0, -0.7, -z-0.0014)
+	glVertex3f(2.9, -0.7, -z-0.0014)
+
+	glVertex3f(2.9, -0.3, z+0.0014)
+	glVertex3f(3.0, -0.3, z+0.0014)
+	glVertex3f(3.0, -0.7, z+0.0014)
+	glVertex3f(2.9, -0.7, z+0.0014)
+	
+	glColor3f(226/255, 152/255, 22/255)
+	glVertex3f(2.95, -0.35, z+0.0015)
+	glVertex3f(2.985, -0.35, z+0.0015)
+	glVertex3f(2.985, -0.65, z+0.0015)
+	glVertex3f(2.95, -0.65, z+0.0015)
+
+	glVertex3f(2.95, -0.35, -z-0.0015)
+	glVertex3f(2.985, -0.35, -z-0.0015)
+	glVertex3f(2.985, -0.65, -z-0.0015)
+	glVertex3f(2.95, -0.65, -z-0.0015)
+	glEnd()
 	#front window glass
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 	glEnable(GL_BLEND)
@@ -466,7 +525,7 @@ def loadTexture(data, ix, iy):
 
       
 def main():
-	global data
+	global data, dim1, dim2
 	glutInit(sys.argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH)
 	glutInitWindowSize(640,480)
@@ -488,10 +547,10 @@ def main():
 	dim1.append(y)
 	data.append(arr)
 
-	arr, x, y = loadImage("../img/tes.jpg")
-	dim2.append(x)
-	dim2.append(y)
-	data.append(arr)
+	# arr, x, y = loadImage("../img/tes.jpg")
+	# dim2.append(x)
+	# dim2.append(y)
+	# data.append(arr)
 	
 	glutMainLoop()
  
